@@ -21,7 +21,7 @@ O desenvolvimento do sistema será realizado em um ambiente acadêmico, utilizan
 
 O escopo do projeto inclui:
 
-- Cadastro de clientes
+- Cadastro de usuários
 - Cadastro de produtos e categorias
 - Registro de vendas e formas de pagamento
 - Controle de entrada e saída de estoque
