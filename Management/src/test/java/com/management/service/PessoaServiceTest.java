@@ -2,7 +2,6 @@ package com.management.service;
 
 import com.management.DTOs.*;
 import com.management.enums.TipoEndereco;
-import com.management.enums.TipoSanguineo;
 import com.management.exception.ResourceNotFoundException;
 import com.management.model.TipoContato;
 import com.management.repository.TipoContatoRepository;

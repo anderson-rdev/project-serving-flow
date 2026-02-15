@@ -1,7 +1,6 @@
 package com.management.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.management.enums.TipoSanguineo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 
@@ -17,9 +16,6 @@ public class PessoaResponse {
     @Schema(description = "Nome completo da pessoa", example = "João da Silva")
     private String nome;
 
-    @Schema(description = "Tipo sanguíneo da pessoa", example = "O_POSITIVO")
-    private TipoSanguineo tipoSanguineo;
-
     @Schema(description = "Lista de contatos da pessoa")
     @JsonProperty("contatos")
     private List<ContatoDTO> contatos = new ArrayList<>();
@@ -33,24 +29,17 @@ public class PessoaResponse {
     @JsonProperty("documentos")
     private List<DocumentosDTO> documentos = new ArrayList<>();
 
-    @Schema(description = "Lista de filiações da pessoa")
-    @JsonProperty("filiacoes")
-    private List<FiliacaoDTO> filiacoes = new ArrayList<>();
-
     // Construtor vazio
     public PessoaResponse() {}
 
     // Construtor completo
-    public PessoaResponse(Long id, String nome, TipoSanguineo tipoSanguineo,
-                          List<ContatoDTO> contatos, List<EnderecoDTO> enderecos,
-                          List<DocumentosDTO> documentos, List<FiliacaoDTO> filiacoes) {
+    public PessoaResponse(Long id, String nome,
+                          List<ContatoDTO> contatos, List<EnderecoDTO> enderecos) {
         this.id = id;
         this.nome = nome;
-        this.tipoSanguineo = tipoSanguineo;
         this.contatos = contatos != null ? contatos : new ArrayList<>();
         this.enderecos = enderecos != null ? enderecos : new ArrayList<>();
         this.documentos = documentos != null ? documentos : new ArrayList<>();
-        this.filiacoes = filiacoes != null ? filiacoes : new ArrayList<>();
     }
 
     // Getters e Setters
@@ -59,9 +48,6 @@ public class PessoaResponse {
 
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
-
-    public TipoSanguineo getTipoSanguineo() { return tipoSanguineo; }
-    public void setTipoSanguineo(TipoSanguineo tipoSanguineo) { this.tipoSanguineo = tipoSanguineo; }
 
     public List<ContatoDTO> getContatos() { return contatos; }
     public void setContatos(List<ContatoDTO> contatos) {
@@ -79,8 +65,4 @@ public class PessoaResponse {
         this.documentos = documentos != null ? documentos : new ArrayList<>();
     }
 
-    public List<FiliacaoDTO> getFiliacoes() { return filiacoes; }
-    public void setFiliacoes(List<FiliacaoDTO> filiacoes) {
-        this.filiacoes = filiacoes != null ? filiacoes : new ArrayList<>();
-    }
 }

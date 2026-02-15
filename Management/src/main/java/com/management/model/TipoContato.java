@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+/** Classe referente ao tipo de contato **/
 @Entity
 @Table(name = "TiposContato")
 public class TipoContato implements Serializable {

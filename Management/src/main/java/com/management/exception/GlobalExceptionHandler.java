@@ -9,10 +9,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Manipulador global de exceções.
- * Centraliza o tratamento de erros e devolve respostas JSON padronizadas.
- */
+/** Manipulador global de exceções. Centraliza o tratamento de erros e devolve respostas JSON padronizadas. **/
 @ControllerAdvice
 public class GlobalExceptionHandler {
 

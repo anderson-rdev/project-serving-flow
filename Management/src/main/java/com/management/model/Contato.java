@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+/** Classe referente aos contatos **/
+
 @Entity
 @Table(
         name = "Contatos",

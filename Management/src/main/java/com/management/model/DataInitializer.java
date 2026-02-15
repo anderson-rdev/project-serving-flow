@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Arrays;
 import java.util.List;
 
+/**  Classe para verificar existência do contato**/
 @Configuration
 public class DataInitializer {
 
@@ -18,27 +19,24 @@ public class DataInitializer {
             // Lista base de tipos de contato que o sistema deve garantir que existam
             List<String> tiposPadrao = Arrays.asList(
                     "Email",
-                    "Telefone",
-                    "WhatsApp",
-                    "Telegram",
-                    "Instagram",
-                    "Facebook",
-                    "LinkedIn"
+                    "Telefone (Fixo)",
+                    "Contato",
+                    "WhatsApp"
             );
 
-            System.out.println("🔍 Verificando Tipos de Contato...");
+            System.out.println("Verificando Tipos de Contato...");
 
             tiposPadrao.forEach(tipo -> {
                 boolean existe = tipoContatoRepository.findByDescricaoIgnoreCase(tipo).isPresent();
                 if (!existe) {
                     tipoContatoRepository.save(new TipoContato(tipo));
-                    System.out.printf("✅ Tipo de contato '%s' cadastrado automaticamente.%n", tipo);
+                    System.out.printf("Tipo de contato '%s' cadastrado automaticamente.%n", tipo);
                 } else {
-                    System.out.printf("ℹ️ Tipo de contato '%s' já existe.%n", tipo);
+                    System.out.printf("Tipo de contato '%s' já existe.%n", tipo);
                 }
             });
 
-            System.out.println("🏁 Verificação de Tipos de Contato concluída.");
+            System.out.println("Verificação de Tipos de Contato concluída.");
         };
     }
 }

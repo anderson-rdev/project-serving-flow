@@ -103,9 +103,6 @@ public class PessoaService {
         Pessoa pessoa = pessoaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pessoa com ID " + id + " não encontrada"));
 
-        if (request.getNome() != null) pessoa.setNome(request.getNome());
-        if (request.getTipoSanguineo() != null) pessoa.setTipoSanguineo(request.getTipoSanguineo());
-
         // Contatos
         if (request.getContatos() != null && !request.getContatos().isEmpty()) {
             List<Contato> novosContatos = converterContatos(request.getContatos());
@@ -145,7 +142,6 @@ public class PessoaService {
     private Pessoa converterRequestParaEntidade(PessoaRequest request) {
         Pessoa pessoa = new Pessoa();
         pessoa.setNome(request.getNome());
-        pessoa.setTipoSanguineo(request.getTipoSanguineo());
 
         // Endereços
         if (request.getEnderecos() != null) {
@@ -169,15 +165,6 @@ public class PessoaService {
             pessoa.setDocumentos(documentos);
         } else {
             pessoa.setDocumentos(new ArrayList<>());
-        }
-
-
-        // Filiações
-        if (request.getFiliacoes() != null) {
-            List<Filiacao> filiacoes = converterFiliacoes(request.getFiliacoes(), pessoa);
-            pessoa.setFiliacoes(filiacoes);
-        } else {
-            pessoa.setFiliacoes(new ArrayList<>());
         }
 
         return pessoa;
@@ -220,17 +207,6 @@ public class PessoaService {
         }).collect(Collectors.toList());
     }
 
-    private List<Filiacao> converterFiliacoes(List<FiliacaoDTO> dtos, Pessoa pessoa) {
-        if (dtos == null) return new ArrayList<>();
-        return dtos.stream().map(dto -> {
-            Filiacao f = new Filiacao();
-            f.setNomePai(dto.getNomePai());
-            f.setNomeMae(dto.getNomeMae());
-            f.setPessoa(pessoa);
-            return f;
-        }).collect(Collectors.toList());
-    }
-
     private List<Documentos> converterDocumentos(@NotNull List<DocumentosDTO> documentosDTOs, Pessoa pessoa) {
         if (documentosDTOs == null) return new ArrayList<>();
 
@@ -255,7 +231,6 @@ public class PessoaService {
         PessoaResponse response = new PessoaResponse();
         response.setId(pessoa.getIdPessoa());
         response.setNome(pessoa.getNome());
-        response.setTipoSanguineo(pessoa.getTipoSanguineo());
 
         // Caso mantenha compatibilidade com DTOs antigos, retornamos o primeiro contato
         if (pessoa.getContatos() != null && !pessoa.getContatos().isEmpty()) {

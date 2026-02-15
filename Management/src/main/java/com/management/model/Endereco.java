@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+
+/** Classe de endereços dos clientes cadastrados **/
 @Entity
 @Table(name = "Enderecos")
 @Schema(description = "Representa um endereço vinculado a uma pessoa")

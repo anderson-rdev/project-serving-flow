@@ -14,14 +14,14 @@ public class ManagementApplication {
         SpringApplication.run(ManagementApplication.class, args);
     }
 
-    // Bean para testar a conexão com o MySQL
+    // Bean para a conexão com o MySQL
     @Bean
-    public CommandLineRunner testarConexao(DataSource dataSource) {
+    public CommandLineRunner Conexao(DataSource dataSource) {
         return args -> {
             try (var conn = dataSource.getConnection()) {
-                System.out.println("✅ Conexão bem-sucedida com o banco: " + conn.getCatalog());
+                System.out.println(" Conexão bem-sucedida com o banco: " + conn.getCatalog());
             } catch (Exception e) {
-                System.err.println("❌ Falha na conexão: " + e.getMessage());
+                System.err.println(" Falha na conexão: " + e.getMessage());
                 e.printStackTrace();
             }
         };

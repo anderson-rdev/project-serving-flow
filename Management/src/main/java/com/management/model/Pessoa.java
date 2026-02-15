@@ -1,13 +1,10 @@
 package com.management.model;
 
-import com.management.enums.TipoSanguineo;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
-/**
- * Entidade Pessoa corrigida — inclui tipo sanguíneo, contatos e endereços.
- */
+/** Classe Pessoa que vai dar origem aos usuários (Funcionário/Gerente) e também cadastro de clientes  **/
 @Entity
 @Table(name = "Pessoas")
 public class Pessoa implements Serializable {
@@ -32,8 +29,6 @@ public class Pessoa implements Serializable {
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Documentos> documentos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Filiacao> filiacoes = new ArrayList<>();
 
     public Pessoa() {}
 
@@ -91,14 +86,6 @@ public class Pessoa implements Serializable {
         this.documentos = documentos == null ? new ArrayList<>() : documentos;
     }
 
-    public List<Filiacao> getFiliacoes() {
-        return filiacoes;
-    }
-
-    public void setFiliacoes(List<Filiacao> filiacoes) {
-        this.filiacoes = filiacoes == null ? new ArrayList<>() : filiacoes;
-    }
-
     /* -------------------- Auxiliares bidirecionais -------------------- */
 
     public void adicionarContato(Contato contato) {
@@ -129,12 +116,6 @@ public class Pessoa implements Serializable {
         if (doc == null) return;
         doc.setPessoa(this);
         this.documentos.add(doc);
-    }
-
-    public void adicionarFiliacao(Filiacao f) {
-        if (f == null) return;
-        f.setPessoa(this);
-        this.filiacoes.add(f);
     }
 
     /* -------------------- equals / hashCode / toString -------------------- */

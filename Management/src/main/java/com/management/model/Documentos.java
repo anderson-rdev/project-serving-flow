@@ -2,6 +2,8 @@ package com.management.model;
 
 import jakarta.persistence.*;
 
+/** Classe dos documentos que não são obrigatórios no cadastro **/
+
 @Entity
 @Table(
         name = "Documentos",
@@ -12,7 +14,6 @@ public class Documentos extends Dominio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String numeroDocumento;
     private String tipoDocumento;
 
