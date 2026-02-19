@@ -8,7 +8,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 
-/** Classe de endereços dos clientes cadastrados **/
+/**
+ * Classe de endereços dos clientes cadastrados
+ **/
 @Entity
 @Table(name = "Enderecos")
 @Schema(description = "Representa um endereço vinculado a uma pessoa")
@@ -60,9 +62,7 @@ public class Endereco {
     @JsonIgnore
     private Pessoa pessoa; // vínculo com a pessoa
 
-    // ==============================
-    // CONSTRUTORES
-    // ==============================
+    // CONSTRUTOR
     public Endereco() {
     }
 
@@ -78,9 +78,6 @@ public class Endereco {
         this.complemento = complemento;
     }
 
-    // ==============================
-    // GETTERS E SETTERS
-    // ==============================
     public Long getId() {
         return id;
     }
@@ -161,9 +158,7 @@ public class Endereco {
         this.pessoa = pessoa;
     }
 
-    // ==============================
-    // MÉTODOS AUXILIARES
-    // ==============================
+    // MÉTODOS AUXILIAR
     public Long getPessoaId() {
         return pessoa != null ? pessoa.getIdPessoa() : null;
     }

@@ -1,10 +1,12 @@
 package com.management.model;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.*;
 
-/** Classe Pessoa que vai dar origem aos usuários (Funcionário/Gerente) e também cadastro de clientes  **/
+// Classe Pessoa que vai dar origem aos usuários (Funcionário/Gerente) e também cadastro de clientes
+
 @Entity
 @Table(name = "Pessoas")
 public class Pessoa implements Serializable {
@@ -16,9 +18,6 @@ public class Pessoa implements Serializable {
     @Column(nullable = false, length = 120)
     private String nome;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "tipo_sanguineo", length = 20)
-    private TipoSanguineo tipoSanguineo;
 
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Contato> contatos = new ArrayList<>();
@@ -30,13 +29,13 @@ public class Pessoa implements Serializable {
     private List<Documentos> documentos = new ArrayList<>();
 
 
-    public Pessoa() {}
+    public Pessoa() {
+    }
 
     public Pessoa(String nome) {
         this.nome = nome;
     }
 
-    /* -------------------- Getters / Setters -------------------- */
 
     public Long getIdPessoa() {
         return idPessoa;
@@ -52,14 +51,6 @@ public class Pessoa implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public TipoSanguineo getTipoSanguineo() {
-        return tipoSanguineo;
-    }
-
-    public void setTipoSanguineo(TipoSanguineo tipoSanguineo) {
-        this.tipoSanguineo = tipoSanguineo;
     }
 
     public List<Contato> getContatos() {

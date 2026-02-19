@@ -36,7 +36,6 @@ class PessoaServiceTest {
         // Monta o objeto de requisição
         PessoaRequest request = new PessoaRequest();
         request.setNome("Darda Fernandes");
-        request.setTipoSanguineo(TipoSanguineo.O_POSITIVO);
 
         // Contatos
         ContatoRequest email = new ContatoRequest();
@@ -65,12 +64,6 @@ class PessoaServiceTest {
         documento.setNumeroDocumento("123.456.789-55");
 
         request.setDocumentos(Arrays.asList(documento));
-
-        // Filiação
-        FiliacaoDTO filiacao = new FiliacaoDTO();
-        filiacao.setNomePai("Carlos Roberto Fernandes");
-        filiacao.setNomeMae("Ana Paula da Silva Fernandes");
-        request.setFiliacoes(Arrays.asList(filiacao));
 
         // Executa o cadastro
         pessoaService.cadastrar(request);

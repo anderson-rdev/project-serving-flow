@@ -15,9 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Serviço responsável por gerenciar operações de Pessoa.
- */
+// Serviço responsável por gerenciar operações de Pessoa
+
 @Service
 @Transactional
 public class PessoaService {
@@ -36,7 +35,7 @@ public class PessoaService {
 
     public PessoaResponse cadastrar(PessoaRequest request) {
 
-        // ====== Validação de nome nulo ou vazio ======
+        // Validação de nome nulo ou vazio
         if (request.getNome() == null || request.getNome().isEmpty()) {
             log.warn(getClass(), "Tentativa de cadastro com nome nulo ou vazio.");
             throw new IllegalArgumentException("O nome da pessoa não pode ser nulo ou vazio.");
@@ -61,7 +60,7 @@ public class PessoaService {
                 pessoa.getContatos().forEach(c -> c.setPessoa(pessoa));
             }
 
-// ===== Validação de documentos únicos =====
+// Validação de documentos únicos
             if (pessoa.getDocumentos() != null) {
                 for (Documentos doc : pessoa.getDocumentos()) {
                     if (documentosRepository.existsByNumeroDocumentoAndTipoDocumento(
@@ -87,18 +86,14 @@ public class PessoaService {
     }
 
 
-    // =======================================
     // Consultar (GET)
-    // =======================================
     public PessoaResponse buscarPorId(Long id) {
         Pessoa pessoa = pessoaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pessoa com ID " + id + " não encontrada"));
         return converterParaResponse(pessoa);
     }
 
-    // =======================================
     // Alterar (PUT)
-    // =======================================
     public PessoaResponse alterar(Long id, PessoaRequest request) {
         Pessoa pessoa = pessoaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pessoa com ID " + id + " não encontrada"));
@@ -126,9 +121,7 @@ public class PessoaService {
         return converterParaResponse(atualizada);
     }
 
-    // =======================================
     // Excluir (DELETE)
-    // =======================================
     public void excluir(Long id) {
         if (!pessoaRepository.existsById(id)) {
             throw new ResourceNotFoundException("Pessoa com ID " + id + " não encontrada");
@@ -136,9 +129,7 @@ public class PessoaService {
         pessoaRepository.deleteById(id);
     }
 
-    // =====================================================
     // Conversores auxiliares (DTO ↔ Entidade)
-    // =====================================================
     private Pessoa converterRequestParaEntidade(PessoaRequest request) {
         Pessoa pessoa = new Pessoa();
         pessoa.setNome(request.getNome());
@@ -155,7 +146,7 @@ public class PessoaService {
         if (request.getContatos() != null) {
             List<Contato> contatos = converterContatos(request.getContatos());
             pessoa.setContatos(contatos);
-        }else{
+        } else {
             pessoa.setContatos(new ArrayList<>());
         }
 

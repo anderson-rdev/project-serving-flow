@@ -2,7 +2,9 @@ package com.management.model;
 
 import jakarta.persistence.*;
 
-/** Classe dos documentos que não são obrigatórios no cadastro **/
+/**
+ * Classe dos documentos que não são obrigatórios no cadastro
+ **/
 
 @Entity
 @Table(

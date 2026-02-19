@@ -6,7 +6,9 @@ import org.slf4j.LoggerFactory;
 public class AppLogger {
 
     private static AppLogger instance;
-    private AppLogger() {}
+
+    private AppLogger() {
+    }
 
     public static AppLogger getInstance() {
         if (instance == null) {
@@ -21,11 +23,11 @@ public class AppLogger {
 
     // Metodo para padronizar os logs
     public void info(Class<?> clazz, String message) {
-        getLogger(clazz).info("[APP] {}",message);
+        getLogger(clazz).info("[APP] {}", message);
     }
 
     public void error(Class<?> clazz, String message, Throwable t) {
-        getLogger(clazz).info("[ERROR] {}",message, t);
+        getLogger(clazz).info("[ERROR] {}", message, t);
     }
 
     public void warn(Class<?> clazz, String message) {

@@ -1,11 +1,6 @@
 package com.management.DTOs;
 
-/**
- * DTO usado nas requisições (POST/PUT) para cadastrar ou atualizar contatos.
- *
- * O campo 'tipo' deve conter o nome/descrição do tipo de contato
- * (por exemplo: "EMAIL", "CELULAR", "TELEFONE").
- */
+// DTO usado nas requisições (POST/PUT) para cadastrar ou atualizar contatos.
 public class ContatoRequest {
 
     private String tipo;  // descrição do tipo de contato
@@ -18,7 +13,6 @@ public class ContatoRequest {
         this.valor = valor;
     }
 
-    // Getters e Setters
     public String getTipo() {
         return tipo;
     }

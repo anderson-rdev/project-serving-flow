@@ -18,7 +18,8 @@ public class ContatoResponse {
     private String valor;
 
     // Construtor vazio
-    public ContatoResponse() {}
+    public ContatoResponse() {
+    }
 
     // Construtor de conveniência
     public ContatoResponse(Long id, String tipo, String valor) {

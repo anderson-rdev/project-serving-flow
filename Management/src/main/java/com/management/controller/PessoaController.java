@@ -17,10 +17,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-// Para consistência, usei "Usuários" como você definiu na Tag e no RequestMapping.
+// Para consistência, estou usando "Usuários" como definido na Tag e no RequestMapping.
 @Tag(name = "Usuários", description = "Operações para gerenciamento de usuários")
 @RestController
-    @RequestMapping("/api/v1/usuarios")
+@RequestMapping("/api/v1/usuarios")
 public class PessoaController {
 
     private final PessoaService pessoaService;
@@ -29,17 +29,7 @@ public class PessoaController {
         this.pessoaService = pessoaService;
     }
 
-    /**
-     * Endpoint para cadastrar um novo usuário no sistema.
-     *
-     * Este método recebe os dados de um usuário (dados básicos, contatos e endereços)
-     * e os persiste no banco de dados. A validação dos campos é automática.
-     *
-     * @param pessoaRequest O DTO (Data Transfer Object) contendo os dados do usuário a ser cadastrado.
-     * @return PessoaResponse O DTO do usuário recém-criado, incluindo seu ID único gerado.
-     * @throws org.springframework.web.bind.MethodArgumentNotValidException Em caso de falha na validação dos campos (retorna 400).
-     * @throws com.management.exception.ResourceNotFoundException Em caso de tentativa de cadastro com dados únicos (ex: CPF) já existentes (retorna 409).
-     */
+    // Endpoint para cadastrar um novo usuário no sistema.
     @Operation(summary = "Cadastrar novo usuário",
             description = "Cria um novo usuário com seus dados básicos, contatos e endereços.")
     @ApiResponses(value = {
@@ -65,13 +55,7 @@ public class PessoaController {
         return pessoaService.cadastrar(pessoaRequest);
     }
 
-    /**
-     * Busca um usuário específico pelo seu ID.
-     *
-     * @param id O ID (Long) do usuário a ser buscado.
-     * @return ResponseEntity contendo o PessoaResponse do usuário encontrado (200 OK).
-     * @throws ResourceNotFoundException Se o usuário com o ID especificado não for encontrado (retorna 404).
-     */
+    // Busca um usuário específico pelo seu ID.
     @Operation(summary = "Buscar usuário por ID",
             description = "Recupera os dados de um usuário específico com base em seu ID único.")
     @ApiResponses(value = {
@@ -95,18 +79,7 @@ public class PessoaController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Atualiza os dados de um usuário existente.
-     *
-     * Este método recebe o ID do usuário e um DTO com os dados a serem atualizados.
-     * A lógica de mesclagem dos dados (parcial ou total) é tratada pela camada de serviço.
-     *
-     * @param id O ID (Long) do usuário a ser atualizado.
-     * @param pessoaRequest O DTO com os dados (validados) a serem atualizados.
-     * @return ResponseEntity contendo o PessoaResponse do usuário atualizado (200 OK).
-     * @throws ResourceNotFoundException Se o usuário com o ID especificado não for encontrado (retorna 404).
-     * @throws org.springframework.web.bind.MethodArgumentNotValidException Em caso de falha na validação dos campos (retorna 400).
-     */
+    // Atualiza os dados de um usuário existente.
     @Operation(summary = "Atualizar usuário por ID",
             description = "Atualiza os dados de um usuário existente. Apenas os campos fornecidos no request body serão atualizados.")
     @ApiResponses(value = {
@@ -137,16 +110,7 @@ public class PessoaController {
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Exclui um usuário do sistema pelo seu ID.
-     *
-     * Este método realiza a exclusão lógica ou física do usuário.
-     * Retorna 204 No Content em caso de sucesso.
-     *
-     * @param id O ID (Long) do usuário a ser excluído.
-     * @return ResponseEntity<Void> com status 204 No Content.
-     * @throws ResourceNotFoundException Se o usuário com o ID especificado não for encontrado (retorna 404).
-     */
+    // Exclui um usuário do sistema pelo seu ID.
     @Operation(summary = "Excluir usuário por ID",
             description = "Remove um usuário do sistema com base em seu ID.")
     @ApiResponses(value = {
@@ -171,18 +135,10 @@ public class PessoaController {
         return ResponseEntity.noContent().build();
     }
 
-    /**
-     * Handler global para exceções do tipo ResourceNotFoundException neste controller.
-     * Captura a exceção e retorna uma resposta 404 Not Found padronizada.
-     *
-     * @param ex A exceção ResourceNotFoundException capturada.
-     * @return ResponseEntity contendo a mensagem de erro e o status 404.
-     */
+    // Handler global para exceções do tipo ResourceNotFoundException neste controller.
     @ExceptionHandler(ResourceNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND) // Define o status da resposta deste handler
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public MensagemResponse handleResourceNotFound(ResourceNotFoundException ex) {
-        // Retorna diretamente o DTO de MensagemResponse.
-        // O Spring e o @ResponseStatus cuidam de encapsular no ResponseEntity.
         return new MensagemResponse(ex.getMessage());
     }
 

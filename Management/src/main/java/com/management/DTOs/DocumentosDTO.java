@@ -15,7 +15,9 @@ public class DocumentosDTO {
     private String tipoDocumento;
 
     // Construtor vazio
-    public DocumentosDTO() {}
+    public DocumentosDTO() {
+
+    }
 
     // Construtor completo
     public DocumentosDTO(String numeroDocumento, String tipoDocumento) {

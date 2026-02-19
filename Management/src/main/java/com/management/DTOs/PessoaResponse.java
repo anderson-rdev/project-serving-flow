@@ -29,10 +29,9 @@ public class PessoaResponse {
     @JsonProperty("documentos")
     private List<DocumentosDTO> documentos = new ArrayList<>();
 
-    // Construtor vazio
-    public PessoaResponse() {}
+    public PessoaResponse() {
+    }
 
-    // Construtor completo
     public PessoaResponse(Long id, String nome,
                           List<ContatoDTO> contatos, List<EnderecoDTO> enderecos) {
         this.id = id;
@@ -42,24 +41,41 @@ public class PessoaResponse {
         this.documentos = documentos != null ? documentos : new ArrayList<>();
     }
 
-    // Getters e Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public List<ContatoDTO> getContatos() { return contatos; }
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<ContatoDTO> getContatos() {
+        return contatos;
+    }
+
     public void setContatos(List<ContatoDTO> contatos) {
         this.contatos = contatos != null ? contatos : new ArrayList<>();
     }
 
-    public List<EnderecoDTO> getEnderecos() { return enderecos; }
+    public List<EnderecoDTO> getEnderecos() {
+        return enderecos;
+    }
+
     public void setEnderecos(List<EnderecoDTO> enderecos) {
         this.enderecos = enderecos != null ? enderecos : new ArrayList<>();
     }
 
-    public List<DocumentosDTO> getDocumentos() { return documentos; }
+    public List<DocumentosDTO> getDocumentos() {
+        return documentos;
+    }
 
     public void setDocumentos(List<DocumentosDTO> documentos) {
         this.documentos = documentos != null ? documentos : new ArrayList<>();

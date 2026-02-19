@@ -20,46 +20,50 @@ public class PessoaRequest {
     @Size(min = 3, max = 100, message = "O nome deve ter entre 3 e 100 caracteres")
     private String nome;
 
-    // ============================================================
     // Contatos (permite múltiplos)
-    // ============================================================
     @Schema(description = "Lista de contatos associados à pessoa (e.g., e-mail, telefone, WhatsApp)")
     @Valid
     @NotEmpty(message = "A pessoa deve ter ao menos um contato")
     @JsonProperty("contatos")
     private List<ContatoRequest> contatos = new ArrayList<>();
 
-    // ============================================================
     // Endereços
-    // ============================================================
     @Schema(description = "Lista de endereços associados à pessoa")
     @Valid
     @Size(max = 5, message = "A pessoa pode ter no máximo 5 endereços cadastrados")
     @JsonProperty("enderecos")
     private List<EnderecoDTO> enderecos = new ArrayList<>();
 
-    // ============================================================
     // Documentos
-    // ============================================================
     @Schema(description = "Lista de documentos da pessoa (CPF, RG, passaporte etc.)")
     @Valid
     @JsonProperty("documentos")
     private List<DocumentosDTO> documentos = new ArrayList<>();
 
     // Construtores
-    public PessoaRequest() {}
+    public PessoaRequest() {
+    }
 
-    // ============================================================
-    // Getters e Setters
-    // ============================================================
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     @JsonProperty("contatos")
-    public List<ContatoRequest> getContatos() { return contatos; }
+    public List<ContatoRequest> getContatos() {
+        return contatos;
+    }
 
     @JsonProperty("contatos")
     public void setContatos(List<ContatoRequest> contatos) {
@@ -67,7 +71,9 @@ public class PessoaRequest {
     }
 
     @JsonProperty("enderecos")
-    public List<EnderecoDTO> getEnderecos() { return enderecos; }
+    public List<EnderecoDTO> getEnderecos() {
+        return enderecos;
+    }
 
     @JsonProperty("enderecos")
     public void setEnderecos(List<EnderecoDTO> enderecos) {
@@ -75,7 +81,9 @@ public class PessoaRequest {
     }
 
     @JsonProperty("documentos")
-    public List<DocumentosDTO> getDocumentos() { return documentos; }
+    public List<DocumentosDTO> getDocumentos() {
+        return documentos;
+    }
 
     @JsonProperty("documentos")
     public void setDocumentos(List<DocumentosDTO> documentos) {
